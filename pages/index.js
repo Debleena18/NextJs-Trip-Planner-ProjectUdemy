@@ -1,3 +1,4 @@
+//This uses Static Generation Type to Pre-Render the page with data.
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -17,9 +18,18 @@ const DUMMY_MEETUPS = [
   }
 ];
 
-function HomePage() {
-  return  <MeetupList meetups={DUMMY_MEETUPS} />
-      
+function HomePage(props) {
+  return <MeetupList meetups={props.meetups} />;
+}
+
+export async function getStaticProps() {
+  // fetch data from an API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    },
+    revalidate: 1 //It is the number of sec on which the data will be changed. It can be any no depending on developer.
+  }; 
 }
 
 export default HomePage;
