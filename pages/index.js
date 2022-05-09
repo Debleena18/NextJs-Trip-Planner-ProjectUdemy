@@ -1,4 +1,3 @@
-//This uses Static Generation Type to Pre-Render the page with data.
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -22,6 +21,22 @@ function HomePage(props) {
   return <MeetupList meetups={props.meetups} />;
 }
 
+//This uses Server Side Render Type to Pre-Render the page with data.
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   // fetch data from an API
+
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     }
+//   };
+// }
+
+
+//This uses Static Generation Type to Pre-Render the page with data.
 export async function getStaticProps() {
   // fetch data from an API
   return {
