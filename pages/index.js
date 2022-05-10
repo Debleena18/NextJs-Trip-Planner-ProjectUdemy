@@ -1,12 +1,24 @@
+import { Fragment } from 'react';
+import Head from 'next/head';
 import { MongoClient } from 'mongodb';
 
 import MeetupList from '../components/meetups/MeetupList';
 
 function HomePage(props) {
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Trip Planner NextJs</title>
+        <meta
+          name='description'
+          content='Browse a huge list of highly active React meetups!'
+        />
+      </Head>
+      <MeetupList meetups={props.meetups} />;
+    </Fragment>
+  );
 }
 
-//This uses Server Side Render Type to Pre-Render the page with data.
 // export async function getServerSideProps(context) {
 //   const req = context.req;
 //   const res = context.res;
@@ -20,8 +32,6 @@ function HomePage(props) {
 //   };
 // }
 
-
-//This uses Static Generation Type to Pre-Render the page with data.
 export async function getStaticProps() {
   // fetch data from an API
   const client = await MongoClient.connect(
